@@ -1,3 +1,21 @@
 <button
   (click)="singUp()"
   i18n="Sing Up|Sing up button@@auth-ang.sing-up-button">sing up</button>
+
+<ng-container [ngSwitch]="singUpStatus$ | async">
+  <ng-container *ngSwitchCase="singUpStatus.SUCCESS">
+    <span i18n="Account was created successfully| Sing up status: success@auth-ang.sing-up-status.success">
+      Account was created successfully
+    </span>
+  </ng-container>
+  <ng-container *ngSwitchCase="singUpStatus.ERROR">
+    <span i18n="Something went wrong| Sing up status: success@auth-ang.sing-up-status.error">
+      Something went wrong
+    </span>
+  </ng-container>
+  <ng-container *ngSwitchCase="singUpStatus.PROCESSING">
+    <span  i18n="Processing...| Sing up status: processing@auth-ang.sing-up-status.processing">
+      Processing...
+    </span>
+  </ng-container>
+</ng-container>

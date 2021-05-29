@@ -13,4 +13,10 @@ export interface SingUpRequestData {
   firstName: string;
   lastName: string;
   email: string;
+};
+
+export enum SingUpStatus {
+  SUCCESS,
+  ERROR,
+  PROCESSING
 }
