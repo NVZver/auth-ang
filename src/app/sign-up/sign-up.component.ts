@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SingUpService} from './sing-up.service';
-import {SingUpRequestData} from './types/types';
+import {SingUpRequestData} from './types';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
