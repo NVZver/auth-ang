@@ -123,6 +123,46 @@
           }
         }
       }
+    },
+    "sing-up-ang": {
+      "projectType": "library",
+      "root": "projects/sing-up-ang",
+      "sourceRoot": "projects/sing-up-ang/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/sing-up-ang/tsconfig.lib.json",
+            "project": "projects/sing-up-ang/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sing-up-ang/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sing-up-ang/src/test.ts",
+            "tsConfig": "projects/sing-up-ang/tsconfig.spec.json",
+            "karmaConfig": "projects/sing-up-ang/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sing-up-ang/tsconfig.lib.json",
+              "projects/sing-up-ang/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "auth-ang"
 }
