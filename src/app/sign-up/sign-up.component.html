@@ -1,6 +1,36 @@
-<button
-  (click)="singUp()"
-  i18n="Sing Up|Sing up button@@auth-ang.sing-up-button">sing up</button>
+<div class="sing-up">
+  <form
+    class="sing-up__form"
+    [formGroup]="singUpForm"
+    (ngSubmit)="singUp()"
+  >
+    <label i18n="First Name|Sing up form input: First name@@auth-ang.sing-up-input.first-name">
+      First Name
+      <input
+        type="text"
+        formControlName="firstName"
+      >
+    </label>
+
+    <label i18n="Last Name|Sing up form input: Last name@@auth-ang.sing-up-input.last-name">
+      Last Name
+      <input
+        type="text"
+        formControlName="lastName"
+      >
+    </label>
+    <label i18n="Email|Sing up form input: Email@@auth-ang.sing-up-input.email">
+      Email
+      <input
+        type="text"
+        formControlName="email"
+      >
+    </label>
+    <button
+      type="submit"
+      [disabled]="!singUpForm.valid"
+      i18n="Sing Up|Sing up button@@auth-ang.sing-up-button">Sing up</button>
+  </form>
 
 <ng-container [ngSwitch]="singUpStatus$ | async">
   <ng-container *ngSwitchCase="singUpStatus.SUCCESS">
@@ -19,3 +49,5 @@
     </span>
   </ng-container>
 </ng-container>
+
+</div>

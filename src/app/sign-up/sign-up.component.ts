@@ -3,6 +3,7 @@ import {SingUpService} from './sing-up.service';
 import {SingUpRequestData, SingUpStatus} from './types';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,11 +14,20 @@ import {takeUntil} from 'rxjs/operators';
 export class SignUpComponent implements OnInit, OnDestroy {
 
   singUpStatus$: BehaviorSubject<SingUpStatus|undefined> = new BehaviorSubject<SingUpStatus|undefined>(undefined);
+
+  singUpForm: FormGroup = this.formBuilder.group({
+    firstName: [''],
+    lastName: [''],
+    email: ['']
+  });
+
   readonly singUpStatus = SingUpStatus;
+
   private gc$ = new Subject();
 
   constructor(
-    private singUpService: SingUpService
+    private singUpService: SingUpService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -29,13 +39,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   singUp(): void {
-    this.singUpStatus$.next(this.singUpStatus.PROCESSING);
-    const singUpRequestData: SingUpRequestData = {
-      firstName: 'Jack',
-      lastName: 'Jonson',
-      email: 'jack.jonson@mymail.com'
-    };
-    this.singUpService.singUp(singUpRequestData).pipe(
+    this.singUpService.singUp(this.singUpForm.value).pipe(
       takeUntil(this.gc$)
     ).subscribe(res => {
       console.log(res);
