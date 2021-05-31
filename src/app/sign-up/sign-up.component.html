@@ -5,34 +5,35 @@
     (ngSubmit)="singUp()"
   >
     <label i18n="First Name|Sing up form input: First name@@auth-ang.sing-up-input.first-name">
-      First Name*
+      First Name
       <input
         type="text"
         required="true"
         formControlName="firstName"
       >
     </label>
-    <div
-      *ngIf="singUpForm.controls['firstName'].invalid && (singUpForm.controls['firstName'].touched || singUpForm.controls['firstName'].touched)"
+    <div class="sing-up__errors"
+      *ngIf="singUpForm.controls['firstName'].invalid && (singUpForm.controls['firstName'].dirty || singUpForm.controls['firstName'].touched)"
       i18n="First name is required| Sing up form error: first name@@auth-ang.sing-up-input.first-name.error"
     >
       First name is required
     </div>
 
     <label i18n="Last Name|Sing up form input: Last name@@auth-ang.sing-up-input.last-name">
-      Last Name*
+      Last Name
       <input
         type="text"
         required="true"
         formControlName="lastName"
       >
     </label>
-    <div
-      *ngIf="singUpForm.controls['lastName'].invalid && (singUpForm.controls['lastName'].touched || singUpForm.controls['lastName'].touched)"
+    <div class="sing-up__errors"
+      *ngIf="singUpForm.controls['lastName'].invalid && (singUpForm.controls['lastName'].dirty|| singUpForm.controls['lastName'].touched)"
       i18n="Last name is required| Sing up form error: last name@@auth-ang.sing-up-input.last-name.error"
     >
       Last name is required
     </div>
+
     <label i18n="Email|Sing up form input: Email@@auth-ang.sing-up-input.email">
       Email*
       <input
@@ -41,15 +42,60 @@
         formControlName="email"
       >
     </label>
-    <div
-      *ngIf="singUpForm.controls['email'].invalid && (singUpForm.controls['email'].touched || singUpForm.controls['email'].touched)"
+    <div class="sing-up__errors"
+      *ngIf="singUpForm.controls['email'].invalid && (singUpForm.controls['email'].dirty|| singUpForm.controls['email'].touched)"
       i18n="Email is required| Sing up form error: email@@auth-ang.sing-up-input.email.error.required"
     >
       <div *ngIf="singUpForm.controls['email'].errors?.required">
-        Last name is required
+        Email is required
       </div>
       <div *ngIf="singUpForm.controls['email'].errors?.email">
         Email is invalid.
+      </div>
+    </div>
+
+    <label i18n="Password|Sing up form input: Password@@auth-ang.sing-up-input.password">
+      Password
+      <input
+        type="text"
+        required="true"
+        formControlName="password"
+      >
+    </label>
+    <div class="sing-up__errors"
+      *ngIf="singUpForm.controls['password'].invalid && (singUpForm.controls['password'].dirty|| singUpForm.controls['password'].touched)"
+      i18n="Password is required| Sing up form error: Password@@auth-ang.sing-up-input.email.password.required"
+    >
+      <div *ngIf="singUpForm.controls['password'].errors?.required">
+        Password is required
+      </div>
+      <div *ngIf="singUpForm.controls['password'].errors?.minlength">
+        Password mast contain at least 8 characters
+      </div>
+      <div *ngIf="singUpForm.errors?.passwordHasNames">
+        Password should not contain first name or last name.
+      </div>
+      <div *ngIf="singUpForm.controls['password'].errors?.passwordCharacters">
+        Password mast contain at least 1 lower and 1 upper case letters
+      </div>
+    </div>
+    <label i18n="Confirm password|Sing up form input: Confirm password@@auth-ang.sing-up-input.password-confirm">
+      Confirm password
+      <input
+        type="text"
+        required="true"
+        formControlName="passwordConfirm"
+      >
+    </label>
+    <div class="sing-up__errors"
+      *ngIf="singUpForm.invalid && (singUpForm.controls['passwordConfirm'].dirty|| singUpForm.controls['passwordConfirm'].touched)"
+      i18n="Password confirm is required| Sing up form error: Password confirm@@auth-ang.sing-up-input.email.password.required"
+    >
+      <div *ngIf="singUpForm.controls['passwordConfirm'].errors?.required">
+        Password is required
+      </div>
+      <div *ngIf="singUpForm.errors?.passwordIsDifferent">
+        Passwords are different
       </div>
     </div>
     <button

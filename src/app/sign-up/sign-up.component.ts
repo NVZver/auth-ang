@@ -16,13 +16,27 @@ export class SignUpComponent implements OnInit, OnDestroy {
   singUpStatus$: BehaviorSubject<SingUpStatus | undefined> = new BehaviorSubject<SingUpStatus | undefined>(undefined);
 
   singUpForm: FormGroup = this.formBuilder.group({
-    firstName: ['', [Validators.required]
-    ],
-    lastName: ['', [Validators.required]
-    ],
-    email: ['', [Validators.required, Validators.email]
-    ]
-  });
+      firstName: ['', [Validators.required]
+      ],
+      lastName: ['', [Validators.required]
+      ],
+      email: ['', [Validators.required, Validators.email]
+      ],
+      password: ['', [
+        Validators.minLength(8),
+        this.validatePasswordCharacters(/(?=.*[a-z])(?=.*[A-Z]).*/),
+      ]],
+      passwordConfirm: ['', [
+        Validators.required,
+      ]]
+    },
+    {
+      validators: [
+        this.validateNameInPassword,
+        this.validatePasswordConfirm
+      ]
+    }
+  );
 
   readonly singUpStatus = SingUpStatus;
 
@@ -47,12 +61,40 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.singUpService.singUp(this.singUpForm.value).pipe(
       takeUntil(this.gc$)
     ).subscribe(res => {
-      console.log(res);
       if (res._id) {
         this.singUpStatus$.next(SingUpStatus.SUCCESS);
       } else {
         this.singUpStatus$.next(SingUpStatus.ERROR);
       }
     });
+  }
+
+  private validatePasswordCharacters(passRegExp: RegExp): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isPasswordValid = passRegExp.test(control.value);
+      return isPasswordValid
+        ? null
+        : {passwordCharacters: {value: control.value}};
+    };
+  }
+
+  private validateNameInPassword(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password').value.toUpperCase();
+    const firstName = control.get('firstName').value.toUpperCase();
+    const lastName = control.get('lastName').value.toUpperCase();
+    if (firstName && password.includes(firstName)) {
+      return {passwordHasNames: {value: firstName}};
+    } else if (lastName && password.includes(lastName)) {
+      return {passwordHasNames: {value: lastName}};
+    }
+    return null;
+  }
+
+  private validatePasswordConfirm(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password').value;
+    const passwordConfirm = control.get('passwordConfirm').value;
+    return password !== passwordConfirm
+      ? {passwordIsDifferent: {value: passwordConfirm}}
+      : null;
   }
 }
