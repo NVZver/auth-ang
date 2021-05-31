@@ -1,9 +1,54 @@
+$default-padding: 5px !default;
+$default-border-radius: 5px !default;
+$default-font-size: 16px !default;
+
 .sing-up {
   display: flex;
   flex-direction: column;
+  font-size: $default-font-size;
 
   &__form {
-  display: flex;
-  flex-direction: column;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+
+    lanbel {
+      margin-right: $default-padding;
+    }
+
+    input {
+      flex-basis: 70%;
+      padding: $default-padding;
+      border: 1px solid gray;
+      border-radius: $default-border-radius;
+      margin-bottom: 10px;
+
+    }
+
+    button {
+      border-radius: $default-border-radius;
+      padding: $default-padding;
+
+      &:disabled {
+        color: lightgray;
+      }
+    }
+  }
+
+  &__status {
+    padding: 10px;
+    border-radius: $default-border-radius;
+    line-break: auto;
+
+    &--success {
+      background-color: lightgreen;
+    }
+    &--error {
+      background-color: lightcoral;
+    }
+    &--processing {
+      background-color: lightgray;
+    }
+  }
 }

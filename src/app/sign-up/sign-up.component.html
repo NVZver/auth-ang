@@ -5,49 +5,82 @@
     (ngSubmit)="singUp()"
   >
     <label i18n="First Name|Sing up form input: First name@@auth-ang.sing-up-input.first-name">
-      First Name
+      First Name*
       <input
         type="text"
+        required="true"
         formControlName="firstName"
       >
     </label>
+    <div
+      *ngIf="singUpForm.controls['firstName'].invalid && (singUpForm.controls['firstName'].touched || singUpForm.controls['firstName'].touched)"
+      i18n="First name is required| Sing up form error: first name@@auth-ang.sing-up-input.first-name.error"
+    >
+      First name is required
+    </div>
 
     <label i18n="Last Name|Sing up form input: Last name@@auth-ang.sing-up-input.last-name">
-      Last Name
+      Last Name*
       <input
         type="text"
+        required="true"
         formControlName="lastName"
       >
     </label>
+    <div
+      *ngIf="singUpForm.controls['lastName'].invalid && (singUpForm.controls['lastName'].touched || singUpForm.controls['lastName'].touched)"
+      i18n="Last name is required| Sing up form error: last name@@auth-ang.sing-up-input.last-name.error"
+    >
+      Last name is required
+    </div>
     <label i18n="Email|Sing up form input: Email@@auth-ang.sing-up-input.email">
-      Email
+      Email*
       <input
         type="text"
+        required="true"
         formControlName="email"
       >
     </label>
+    <div
+      *ngIf="singUpForm.controls['email'].invalid && (singUpForm.controls['email'].touched || singUpForm.controls['email'].touched)"
+      i18n="Email is required| Sing up form error: email@@auth-ang.sing-up-input.email.error.required"
+    >
+      <div *ngIf="singUpForm.controls['email'].errors?.required">
+        Last name is required
+      </div>
+      <div *ngIf="singUpForm.controls['email'].errors?.email">
+        Email is invalid.
+      </div>
+    </div>
     <button
       type="submit"
-      [disabled]="!singUpForm.valid"
-      i18n="Sing Up|Sing up button@@auth-ang.sing-up-button">Sing up</button>
+      [disabled]="singUpForm.invalid || (singUpStatus$ | async) === singUpStatus.PROCESSING"
+      i18n="Sing Up|Sing up button@@auth-ang.sing-up-button">Sing up
+    </button>
   </form>
 
-<ng-container [ngSwitch]="singUpStatus$ | async">
-  <ng-container *ngSwitchCase="singUpStatus.SUCCESS">
-    <span i18n="Account was created successfully| Sing up status: success@auth-ang.sing-up-status.success">
-      Account was created successfully
-    </span>
+  <ng-container [ngSwitch]="singUpStatus$ | async">
+    <ng-container *ngSwitchCase="singUpStatus.SUCCESS">
+      <div
+        class="sing-up__status sing-up__status--success"
+        i18n="Account was created successfully| Sing up status: success@auth-ang.sing-up-status.success">
+        Account was created successfully
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="singUpStatus.ERROR">
+      <div
+        class="sing-up__status sing-up__status--error"
+        i18n="Something went wrong| Sing up status: success@auth-ang.sing-up-status.error">
+        Something went wrong
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="singUpStatus.PROCESSING">
+      <div
+        class="sing-up__status sing-up__status--processing"
+        i18n="Processing...| Sing up status: processing@auth-ang.sing-up-status.processing">
+        Processing...
+      </div>
+    </ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="singUpStatus.ERROR">
-    <span i18n="Something went wrong| Sing up status: success@auth-ang.sing-up-status.error">
-      Something went wrong
-    </span>
-  </ng-container>
-  <ng-container *ngSwitchCase="singUpStatus.PROCESSING">
-    <span  i18n="Processing...| Sing up status: processing@auth-ang.sing-up-status.processing">
-      Processing...
-    </span>
-  </ng-container>
-</ng-container>
 
 </div>
