@@ -47,12 +47,17 @@
     </label>
     <div class="sing-up__errors"
       *ngIf="singUpForm.controls['email'].invalid && (singUpForm.controls['email'].dirty|| singUpForm.controls['email'].touched)"
-      i18n="Email is required| Sing up form error: email@@auth-ang.sing-up-input.email.error.required"
     >
-      <div *ngIf="singUpForm.controls['email'].errors?.required">
+      <div
+        *ngIf="singUpForm.controls['email'].errors?.required"
+        i18n="Email is required| Sing up form error: email@@auth-ang.sing-up-input.email.error.required"
+      >
         Email is required
       </div>
-      <div *ngIf="singUpForm.controls['email'].errors?.email">
+      <div
+        *ngIf="singUpForm.controls['email'].errors?.email"
+        i18n="Email is invalid| Sing up form error: email@@auth-ang.sing-up-input.email.error.invalid"
+      >
         Email is invalid.
       </div>
     </div>
@@ -68,18 +73,29 @@
     </label>
     <div class="sing-up__errors"
       *ngIf="singUpForm.controls['password'].invalid && (singUpForm.controls['password'].dirty|| singUpForm.controls['password'].touched)"
-      i18n="Password is required| Sing up form error: Password@@auth-ang.sing-up-input.email.password.required"
     >
-      <div *ngIf="singUpForm.controls['password'].errors?.required">
+      <div
+        *ngIf="singUpForm.controls['password'].errors?.required"
+        i18n="Password is required| Sing up form error: Password@@auth-ang.sing-up-input.password.error.required"
+      >
         Password is required
       </div>
-      <div *ngIf="singUpForm.controls['password'].errors?.minlength">
+      <div
+        *ngIf="singUpForm.controls['password'].errors?.minlength"
+        i18n="Password mast contain at least 8 characters| Sing up form error: Password@@auth-ang.sing-up-input.password.error.min-lenght"
+      >
         Password mast contain at least 8 characters
       </div>
-      <div *ngIf="singUpForm.errors?.passwordHasNames">
+      <div
+        *ngIf="singUpForm.errors?.passwordHasNames"
+        i18n="Password should not contain first name or last name.| Sing up form error: Password@@auth-ang.sing-up-input.password.error.has-names"
+      >
         Password should not contain first name or last name.
       </div>
-      <div *ngIf="singUpForm.controls['password'].errors?.passwordCharacters">
+      <div
+        *ngIf="singUpForm.controls['password'].errors?.passwordCharacters"
+        i18n="Password mast contain at least 1 lower and 1 upper case letters| Sing up form error: Password@@auth-ang.sing-up-input.password.error.characters"
+      >
         Password mast contain at least 1 lower and 1 upper case letters
       </div>
     </div>
@@ -94,12 +110,17 @@
     </label>
     <div class="sing-up__errors"
       *ngIf="singUpForm.invalid && (singUpForm.controls['passwordConfirm'].dirty|| singUpForm.controls['passwordConfirm'].touched)"
-      i18n="Password confirm is required| Sing up form error: Password confirm@@auth-ang.sing-up-input.email.password.required"
     >
-      <div *ngIf="singUpForm.controls['passwordConfirm'].errors?.required">
-        Password is required
+      <div
+        *ngIf="singUpForm.controls['passwordConfirm'].errors?.required"
+        i18n="Password confirmation is required| Sing up form error: Password confirm@@auth-ang.sing-up-input.password-confirm.error.required"
+      >
+        Password confirmation is required
       </div>
-      <div *ngIf="singUpForm.errors?.passwordIsDifferent">
+      <div
+        *ngIf="singUpForm.errors?.passwordIsDifferent"
+        i18n="Passwords are different| Sing up form error: Password confirm@@auth-ang.sing-up-input.password-confirm.error.different"
+      >
         Passwords are different
       </div>
     </div>
