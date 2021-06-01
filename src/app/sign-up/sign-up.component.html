@@ -14,10 +14,13 @@
       >
     </label>
     <div class="sing-up__errors"
-      *ngIf="singUpForm.controls['firstName'].invalid && (singUpForm.controls['firstName'].dirty || singUpForm.controls['firstName'].touched)"
-      i18n="First name is required| Sing up form error: first name@@auth-ang.sing-up-input.first-name.error"
+         role="alert"
+         aria-live="assertive"
+         *ngIf="singUpForm.controls['firstName'].invalid && (singUpForm.controls['firstName'].dirty || singUpForm.controls['firstName'].touched)"
     >
-      <div>First name is required</div>
+      <div
+        i18n="First name is required| Sing up form error: first name@@auth-ang.sing-up-input.first-name.error"
+      >First name is required</div>
     </div>
 
     <label i18n="Last Name|Sing up form input: Last name@@auth-ang.sing-up-input.last-name">
@@ -30,10 +33,13 @@
       >
     </label>
     <div class="sing-up__errors"
-      *ngIf="singUpForm.controls['lastName'].invalid && (singUpForm.controls['lastName'].dirty|| singUpForm.controls['lastName'].touched)"
-      i18n="Last name is required| Sing up form error: last name@@auth-ang.sing-up-input.last-name.error"
+         role="alert"
+         aria-live="assertive"
+         *ngIf="singUpForm.controls['lastName'].invalid && (singUpForm.controls['lastName'].dirty|| singUpForm.controls['lastName'].touched)"
     >
-      <div>Last name is required</div>
+      <div
+        i18n="Last name is required| Sing up form error: last name@@auth-ang.sing-up-input.last-name.error"
+      >Last name is required</div>
     </div>
 
     <label i18n="Email|Sing up form input: Email@@auth-ang.sing-up-input.email">
@@ -46,7 +52,9 @@
       >
     </label>
     <div class="sing-up__errors"
-      *ngIf="singUpForm.controls['email'].invalid && (singUpForm.controls['email'].dirty|| singUpForm.controls['email'].touched)"
+         role="alert"
+         aria-live="assertive"
+         *ngIf="singUpForm.controls['email'].invalid && (singUpForm.controls['email'].dirty|| singUpForm.controls['email'].touched)"
     >
       <div
         *ngIf="singUpForm.controls['email'].errors?.required"
@@ -72,7 +80,9 @@
       >
     </label>
     <div class="sing-up__errors"
-      *ngIf="singUpForm.controls['password'].invalid && (singUpForm.controls['password'].dirty|| singUpForm.controls['password'].touched)"
+         role="alert"
+         aria-live="assertive"
+         *ngIf="singUpForm.controls['password'].invalid && (singUpForm.controls['password'].dirty|| singUpForm.controls['password'].touched)"
     >
       <div
         *ngIf="singUpForm.controls['password'].errors?.required"
@@ -109,7 +119,9 @@
       >
     </label>
     <div class="sing-up__errors"
-      *ngIf="singUpForm.invalid && (singUpForm.controls['passwordConfirm'].dirty|| singUpForm.controls['passwordConfirm'].touched)"
+         role="alert"
+         aria-live="assertive"
+         *ngIf="singUpForm.invalid && (singUpForm.controls['passwordConfirm'].dirty|| singUpForm.controls['passwordConfirm'].touched)"
     >
       <div
         *ngIf="singUpForm.controls['passwordConfirm'].errors?.required"

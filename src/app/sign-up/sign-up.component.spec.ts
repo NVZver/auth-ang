@@ -7,7 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {findImportSpecifier} from '@angular/core/schematics/migrations/renderer-to-renderer2/util';
 import {DebugElement, ElementRef} from '@angular/core';
-import {SingUpRequestData} from './types';
+import {SingUpRequestData, SingUpStatus} from './types';
 
 const LOCATORS = {
   errors: '.sing-up__errors div',
@@ -86,6 +86,9 @@ describe('SignUpComponent', () => {
 
   describe('Errors', () => {
     it('should display errors for "First Name"', () => {
+      const input = fixture.debugElement.query(By.css(LOCATORS.inputs.firstName));
+      input.nativeElement.value = '';
+      input.nativeElement.dispatchEvent(new Event('input'));
     });
   });
 });
