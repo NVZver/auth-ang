@@ -7,6 +7,7 @@
     <label i18n="First Name|Sing up form input: First name@@auth-ang.sing-up-input.first-name">
       First Name
       <input
+        data-role="sing-up.input.firstName"
         type="text"
         required="true"
         formControlName="firstName"
@@ -16,12 +17,13 @@
       *ngIf="singUpForm.controls['firstName'].invalid && (singUpForm.controls['firstName'].dirty || singUpForm.controls['firstName'].touched)"
       i18n="First name is required| Sing up form error: first name@@auth-ang.sing-up-input.first-name.error"
     >
-      First name is required
+      <div>First name is required</div>
     </div>
 
     <label i18n="Last Name|Sing up form input: Last name@@auth-ang.sing-up-input.last-name">
       Last Name
       <input
+        data-role="sing-up.input.lastName"
         type="text"
         required="true"
         formControlName="lastName"
@@ -31,13 +33,14 @@
       *ngIf="singUpForm.controls['lastName'].invalid && (singUpForm.controls['lastName'].dirty|| singUpForm.controls['lastName'].touched)"
       i18n="Last name is required| Sing up form error: last name@@auth-ang.sing-up-input.last-name.error"
     >
-      Last name is required
+      <div>Last name is required</div>
     </div>
 
     <label i18n="Email|Sing up form input: Email@@auth-ang.sing-up-input.email">
-      Email*
+      Email
       <input
         type="text"
+        data-role="sing-up.input.email"
         required="true"
         formControlName="email"
       >
@@ -58,6 +61,7 @@
       Password
       <input
         type="text"
+        data-role="sing-up.input.password"
         required="true"
         formControlName="password"
       >
@@ -83,6 +87,7 @@
       Confirm password
       <input
         type="text"
+        data-role="sing-up.input.passwordConfirm"
         required="true"
         formControlName="passwordConfirm"
       >
