@@ -85,6 +85,7 @@ describe('SignUpComponent', () => {
   });
 
   describe('Errors', () => {
+    // todo: add tests to check all kings of error notifications
     it('should display errors for "First Name"', () => {
       const input = fixture.debugElement.query(By.css(LOCATORS.inputs.firstName));
       input.nativeElement.value = '';
