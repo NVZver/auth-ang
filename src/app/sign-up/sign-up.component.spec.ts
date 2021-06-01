@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {findImportSpecifier} from '@angular/core/schematics/migrations/renderer-to-renderer2/util';
 import {DebugElement, ElementRef} from '@angular/core';
+import {SingUpRequestData} from './types';
 
 const LOCATORS = {
   errors: '.sing-up__errors div',
@@ -44,6 +45,20 @@ describe('SignUpComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('singUp', () => {
+    it('should call "singUp" from "singUpService" with form values', () => {
+      const {inputs} = LOCATORS;
+      const requestData = {} as SingUpRequestData;
+      Object.keys(inputs).forEach(key => {
+        const newValue = key + ': Test Value';
+        requestData[key] = newValue;
+        component.singUpForm.controls[key].setValue(newValue);
+      });
+      component.singUp();
+      expect(signUpServiceStub.singUp).toHaveBeenCalledWith(requestData);
+    });
   });
 
   describe('singUpForm', () => {

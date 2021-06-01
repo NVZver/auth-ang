@@ -13,6 +13,8 @@ export interface SingUpRequestData {
   firstName: string;
   lastName: string;
   email: string;
+  password?: string;
+  passwordConfirm?: string;
 }
 
 export enum SingUpStatus {
