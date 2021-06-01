@@ -146,6 +146,8 @@
   <ng-container [ngSwitch]="singUpStatus$ | async">
     <ng-container *ngSwitchCase="singUpStatus.SUCCESS">
       <div
+        role="alert"
+        aria-live="assertive"
         class="sing-up__status sing-up__status--success"
         i18n="Account was created successfully| Sing up status: success@auth-ang.sing-up-status.success">
         Account was created successfully
@@ -153,6 +155,8 @@
     </ng-container>
     <ng-container *ngSwitchCase="singUpStatus.ERROR">
       <div
+        role="alert"
+        aria-live="assertive"
         class="sing-up__status sing-up__status--error"
         i18n="Something went wrong| Sing up status: success@auth-ang.sing-up-status.error">
         Something went wrong
@@ -160,6 +164,8 @@
     </ng-container>
     <ng-container *ngSwitchCase="singUpStatus.PROCESSING">
       <div
+        role="alert"
+        aria-live="assertive"
         class="sing-up__status sing-up__status--processing"
         i18n="Processing...| Sing up status: processing@auth-ang.sing-up-status.processing">
         Processing...
