@@ -82,7 +82,7 @@
     <div class="sing-up__errors"
          role="alert"
          aria-live="assertive"
-         *ngIf="singUpForm.controls['password'].invalid && (singUpForm.controls['password'].dirty|| singUpForm.controls['password'].touched)"
+         *ngIf="(singUpForm.invalid || singUpForm.controls['password'].invalid) && (singUpForm.controls['password'].dirty|| singUpForm.controls['password'].touched)"
     >
       <div
         *ngIf="singUpForm.controls['password'].errors?.required"
@@ -100,7 +100,7 @@
         *ngIf="singUpForm.errors?.passwordHasNames"
         i18n="Password should not contain first name or last name.| Sing up form error: Password@@auth-ang.sing-up-input.password.error.has-names"
       >
-        Password should not contain first name or last name.
+        Password should not contain first name or last name
       </div>
       <div
         *ngIf="singUpForm.controls['password'].errors?.passwordCharacters"

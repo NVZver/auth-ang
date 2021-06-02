@@ -78,10 +78,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
     };
   }
 
+  //todo fix validation
   private validateNameInPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password').value.toUpperCase();
     const firstName = control.get('firstName').value.toUpperCase();
     const lastName = control.get('lastName').value.toUpperCase();
+    console.log(firstName && password.includes(firstName));
     if (firstName && password.includes(firstName)) {
       return {passwordHasNames: {value: firstName}};
     } else if (lastName && password.includes(lastName)) {
