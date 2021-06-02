@@ -78,7 +78,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
     };
   }
 
-  //todo fix validation
   private validateNameInPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password').value.toUpperCase();
     const firstName = control.get('firstName').value.toUpperCase();
