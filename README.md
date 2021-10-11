@@ -4,7 +4,7 @@ Roadmap
 * [done] Add a service with the API call to the test server and cover it by unit-tests
   * [how to improve] Now all the fields (including password) are sent as one object and it's not secure. To fix it we could send the password to another end-point in a different request.
 * [done] Implement an initial sign-up form and make it send data via the service.
-  * [how to improve] Improve design, confiner the responsive view.
+  * [how to improve] Improve design, consider the responsive view.
 * [done] Add localization
 * [done] Add accessibility features to improve the user experience for users who rely on screen readers:
   * [done] add labels to all inputs
